@@ -10,7 +10,7 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout Spacing="20" x:DataType="model:Recurso">
-                    <Label Text="{Binding Titulo}" FontSize="Medium"/>
+                    <Label Text="{Binding Titulo}" FontSize="20" Style="{DynamicResource ListItemTextStyle}" TextColor="{StaticResource Primary}"/>
                     <Label Text="{Binding Descripcion}" FontSize="Small"/>
                     <WebView HeightRequest="800"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Source="{Binding Url}"/>
                 </StackLayout>

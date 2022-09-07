@@ -128,26 +128,21 @@
                 </xc:CalendarView.DayTemplate>
             </xc:CalendarView>
 
-
             <Label Text="RESULTADOS : " 
                 LineBreakMode="NoWrap" 
                 TextColor="{StaticResource Primary}"
                 Style="{DynamicResource ListItemTextStyle}" 
-                FontSize="25" />
+                FontSize="20" />
             <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10" x:DataType="model:RegistroConsulta">
-                            <Label Text="{Binding DescripcionZona}" LineBreakMode="NoWrap" FontSize="20"
-                            Style="{DynamicResource ListItemTextStyle}" />
-                            <Label Text="{Binding DescripcionNivel}" LineBreakMode="NoWrap" FontSize="18"
-                            Style="{DynamicResource ListItemDetailTextStyle}"/>
-                            <Label Text="{Binding DescripcionFecha}" LineBreakMode="NoWrap" FontSize="16"
-                            Style="{DynamicResource ListItemDetailTextStyle}"/>
+                            <Label Text="{Binding DescripcionZona}" LineBreakMode="NoWrap" FontSize="18" Style="{DynamicResource ListItemTextStyle}" TextColor="{StaticResource Primary}" />
+                            <Label Text="{Binding DescripcionNivel}" LineBreakMode="NoWrap" FontSize="18" Style="{DynamicResource ListItemDetailTextStyle}" TextColor="{StaticResource Primary}"/>
+                            <Label Text="{Binding DescripcionFecha}" LineBreakMode="NoWrap" FontSize="17" Style="{DynamicResource ListItemDetailTextStyle}"/>
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ConsultaViewModel}}, Path=ItemTapped}" >
+                                <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ConsultaViewModel}}, Path=ItemTapped}" >
                                 </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
