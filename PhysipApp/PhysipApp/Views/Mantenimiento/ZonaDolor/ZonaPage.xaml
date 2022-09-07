@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PhysipApp.Views.ZonaPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:PhysipApp.ViewModels"  
+             xmlns:model="clr-namespace:PhysipApp.Models"  
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nuevo" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Cerrar Sesión" Command="{Binding CerrarCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <RefreshView x:DataType="local:ZonaViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:ZonaDolor">
+                        <Grid Padding="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                        
+                        <Label Text="{Binding Descripcion}" 
+                            LineBreakMode="NoWrap" Grid.Column="0"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="20" />
+                        <ImageButton Source="delete.png" Grid.Column="1"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:ZonaViewModel}}, Path=DeleteItem}"		
+                            CommandParameter="{Binding .}"/>
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

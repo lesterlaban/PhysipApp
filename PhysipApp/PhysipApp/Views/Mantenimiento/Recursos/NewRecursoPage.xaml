@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PhysipApp.Views.NewRecursoPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:PhysipApp.ViewModels"  
+             xmlns:model="clr-namespace:PhysipApp.Models"  
+             xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms"
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.Resources>
+        <xcConverters:StringCharLimitConverter x:Key="StringCharLimitConverter"/>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content >
+        <StackLayout Spacing="3" Padding="15" >
+          
+            <Label Text="Titulo" FontSize="Medium" />
+            <Editor Text="{Binding Titulo, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+         
+            <Label Text="Descripcion" FontSize="Medium" />
+            <Editor Text="{Binding Descripcion, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+
+            <Label Text="Url" FontSize="Medium" />
+            <Editor Text="{Binding Url, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Registrar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+    
+</ContentPage>

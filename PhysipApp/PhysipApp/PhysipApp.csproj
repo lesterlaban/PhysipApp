@@ -1,0 +1,96 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+	<SkipFunctionsDepsCopy>true</SkipFunctionsDepsCopy>
+	<UserSecretsId>ae59c0ec-da07-43a1-a4bd-e0b0bddda89f</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
+    <PackageReference Include="System.Globalization" Version="4.3.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.4" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />  
+    <PackageReference Include="XCalendar.Core" Version="4.0.0" />  
+    <PackageReference Include="XCalendar.Forms" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AppShellEncuesta.xaml.cs">
+      <DependentUpon>AppShellEncuesta.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="AppShellNewUsuario.xaml.cs">
+      <DependentUpon>AppShellNewUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="AppShellLogin.xaml.cs">
+      <DependentUpon>AppShellLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="AppShellPaciente.xaml.cs">
+      <DependentUpon>AppShellPaciente.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Paciente\ResultadoEncuestaPage.xaml.cs">
+      <DependentUpon>ResultadoEncuestaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Paciente\ListConsultaPage.xaml.cs">
+      <DependentUpon>ListConsultaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Paciente\ConsultaPage.xaml.cs">
+      <DependentUpon>ConsultaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Encuesta\EncuestaPage.xaml.cs">
+      <DependentUpon>EncuestaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Recursos\NewRecursoPage.xaml.cs">
+      <DependentUpon>NewRecursoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Recursos\RecursoDetailPage.xaml.cs">
+      <DependentUpon>RecursoDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Recursos\RecursoPage.xaml.cs">
+      <DependentUpon>RecursoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Preguntas\NewPreguntaPage.xaml.cs">
+      <DependentUpon>NewPreguntaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Preguntas\PreguntaDetailPage.xaml.cs">
+      <DependentUpon>PreguntaDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Preguntas\PreguntaPage.xaml.cs">
+      <DependentUpon>PreguntaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Tratamiento\TratamientoDetailPage.xaml.cs">
+      <DependentUpon>TratamientoDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Tratamiento\TratamientoPage.xaml.cs">
+      <DependentUpon>TratamientoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\Tratamiento\NewTratamientoPage.xaml.cs">
+      <DependentUpon>NewTratamientoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewUsuarioPage.xaml.cs">
+      <DependentUpon>NewUsuarioPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\NivelDolor\NewNivelPage.xaml.cs">
+      <DependentUpon>NewNivelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\ZonaDolor\NewZonaPage.xaml.cs">
+      <DependentUpon>NewZonaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\NivelDolor\NivelPage.xaml.cs">
+      <DependentUpon>NivelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Mantenimiento\ZonaDolor\ZonaPage.xaml.cs">
+      <DependentUpon>ZonaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Paciente\NewConsultaPage.xaml.cs">
+      <DependentUpon>NewConsultaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Paciente\ConsultaDetailPage.xaml.cs">
+      <DependentUpon>ConsultaDetailPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

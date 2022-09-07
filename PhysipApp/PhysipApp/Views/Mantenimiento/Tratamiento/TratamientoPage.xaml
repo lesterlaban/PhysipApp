@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PhysipApp.Views.TratamientoPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:PhysipApp.ViewModels"  
+             xmlns:model="clr-namespace:PhysipApp.Models"  
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nuevo" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Cerrar Sesión" Command="{Binding CerrarCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <RefreshView x:DataType="local:TratamientoViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:Tratamiento">
+                        <Grid Padding="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding ZonaDolor.Descripcion}" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="20" Grid.Row="0" Grid.Column="0"/>
+
+                            <Label Text="{Binding NivelDolor.Descripcion}" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="20" Grid.Row="1" Grid.Column="0"/>
+
+                            <ImageButton Source="see.png" Grid.Column="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:TratamientoViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}"/>
+
+                            <ImageButton Source="delete.png" Grid.Column="2"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:TratamientoViewModel}}, Path=DeleteItem}"		
+                                CommandParameter="{Binding .}"/>
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PhysipApp.Views.NewUsuarioPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+
+            <Image Source="terapia.jpg" VerticalOptions="Center" HeightRequest="300" />
+
+            <Entry x:Name="Usuario" Text="{Binding Usuario}" Placeholder="Usuario"   
+                           PlaceholderColor="#2196F3" HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="#2196F3"/>
+            <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password"   
+                           PlaceholderColor="#2196F3" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="#2196F3"/>
+
+            <Entry x:Name="PasswordRepet" Text="{Binding PasswordRepet}" Placeholder="Escriba nuevamente su password"   
+                           PlaceholderColor="#2196F3" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="#2196F3"/>
+
+            <Button VerticalOptions="Center" Text="Registrarme" Command="{Binding RegistrarUsuario}"/>
+
+            <Button BorderColor="Transparent"
+                BackgroundColor="Transparent"
+                    TextColor="#2196F3"
+                 VerticalOptions="Center" Text="Volver" Command="{Binding Volver}"/>
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

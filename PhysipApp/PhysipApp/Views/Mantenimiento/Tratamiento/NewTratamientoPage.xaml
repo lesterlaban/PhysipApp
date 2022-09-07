@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PhysipApp.Views.NewTratamientoPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:PhysipApp.ViewModels"  
+             xmlns:model="clr-namespace:PhysipApp.Models"  
+             xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms"
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.Resources>
+        <xcConverters:StringCharLimitConverter x:Key="StringCharLimitConverter"/>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+  
+
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+
+
+            <Label Text="Zona de Dolor" FontSize="Medium" />
+            <Picker Title="Seleccionar"
+                            TitleColor="{StaticResource Primary}"
+                            ItemsSource="{Binding Zonas}"
+                            SelectedItem="{Binding ZonaSeleccionada}"  
+                            ItemDisplayBinding="{Binding Descripcion}"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="20"/>
+
+            <Label Text="Nivel de Dolor" FontSize="Medium" />
+            <Picker Title="Seleccionar"
+                            TitleColor="{StaticResource Primary}"
+                            ItemsSource="{Binding Niveles}"
+                            SelectedItem="{Binding NivelSeleccionado}"  
+                            ItemDisplayBinding="{Binding Descripcion}"
+                            TextColor="{StaticResource Primary}"
+                            FontSize="20"/>
+
+
+            <Label Text="Puntaje Mínimo" FontSize="Medium" />
+            <Editor Text="{Binding PuntajeMinimo, Mode=TwoWay}" AutoSize="TextChanges" Keyboard="Numeric" FontSize="Medium" Margin="0" />
+
+            <Label Text="Puntaje Máximo" FontSize="Medium" />
+            <Editor Text="{Binding PuntajeMaximo, Mode=TwoWay}" AutoSize="TextChanges" Keyboard="Numeric" FontSize="Medium" Margin="0" />
+
+
+            <Label Text="Recursos" FontSize="Medium" />
+
+            <CollectionView x:Name="collectionView" ItemsSource="{Binding Recursos}"
+                SelectionMode="Multiple"
+                SelectedItems="{Binding RecursosSelected}"
+                            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="{Binding Description}" FontAttributes="Italic" VerticalOptions="End" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Registrar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+    
+</ContentPage>

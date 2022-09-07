@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="PhysipApp.Views.EncuestaPage"
+            Title="{Binding Title}"
+            xmlns:local="clr-namespace:PhysipApp.ViewModels"  
+            xmlns:model="clr-namespace:PhysipApp.Models"  
+            x:Name="BrowseItemsPage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cerrar Sesión" Command="{Binding CerrarCommand}" />
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Spacing="3" Padding="15">
+        <StackLayout Padding="10" >
+            <Label Text="{Binding Encuesta1.Nombre}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
+            <CollectionView ItemsSource="{Binding Encuesta1.PreguntasUsuario}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
+                                            RadioButtonGroup.GroupName="{Binding GrupoButton}"
+                                            RadioButtonGroup.SelectedValue="{Binding Puntaje}">
+                            <Label Text="{Binding Pregunta.Descripcion}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" />
+                            <RadioButton Content="1" Value="1" FontSize="14"/>
+                            <RadioButton Content="2" Value="2" FontSize="14"/>
+                            <RadioButton Content="3" Value="3" FontSize="14"/>
+                            <RadioButton Content="4" Value="4" FontSize="14"/>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            <Label Text="{Binding Encuesta2.Nombre}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
+            <CollectionView ItemsSource="{Binding Encuesta2.PreguntasUsuario}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
+                                            RadioButtonGroup.GroupName="{Binding GrupoButton}"
+                                            RadioButtonGroup.SelectedValue="{Binding Puntaje}">
+                            <Label Text="{Binding Pregunta.Descripcion}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" />
+
+                            <RadioButton Content="0" Value="0" />
+                            <RadioButton Content="1" Value="1" />
+                            <RadioButton Content="2" Value="2" />
+                            <RadioButton Content="3" Value="3" />
+                            <RadioButton Content="4" Value="4" />
+
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Text="{Binding Encuesta3.Nombre}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
+            <CollectionView ItemsSource="{Binding Encuesta3.PreguntasUsuario}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
+                                            RadioButtonGroup.GroupName="{Binding GrupoButton}"
+                                            RadioButtonGroup.SelectedValue="{Binding Puntaje}">
+                            <Label Text="{Binding Pregunta.Descripcion}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" />
+
+                            <RadioButton Content="0" Value="0" />
+                            <RadioButton Content="1" Value="1" />
+                            <RadioButton Content="2" Value="2" />
+                            <RadioButton Content="3" Value="3" />
+
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
