@@ -10,70 +10,69 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cerrar Sesión" Command="{Binding CerrarCommand}" />
     </ContentPage.ToolbarItems>
-    
-    <StackLayout Spacing="3" Padding="15">
-        <StackLayout Padding="10" >
-            <Label Text="{Binding Encuesta1.Nombre}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
-            <CollectionView ItemsSource="{Binding Encuesta1.PreguntasUsuario}" SelectionMode="None">
+    <ScrollView>
+
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="{Binding Encuesta1.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
+            <CollectionView ItemsSource="{Binding Encuesta1.PreguntasUsuario}" SelectionMode="None" ItemsUpdatingScrollMode="KeepItemsInView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
                                             RadioButtonGroup.GroupName="{Binding GrupoButton}"
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
-                            <Label Text="{Binding Pregunta.Descripcion}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" />
-                            <RadioButton Content="1" Value="1" FontSize="14"/>
-                            <RadioButton Content="2" Value="2" FontSize="14"/>
-                            <RadioButton Content="3" Value="3" FontSize="14"/>
-                            <RadioButton Content="4" Value="4" FontSize="14"/>
-
+                            <Label Text="{Binding Pregunta.Descripcion}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}" />
+                            <RadioButton Content="1" Value="1" FontSize="10" />
+                            <RadioButton Content="2" Value="2" FontSize="10"/>
+                            <RadioButton Content="3" Value="3" FontSize="10"/>
+                            <RadioButton Content="4" Value="4" FontSize="10"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
-            <Label Text="{Binding Encuesta2.Nombre}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
-            <CollectionView ItemsSource="{Binding Encuesta2.PreguntasUsuario}" SelectionMode="None">
+
+            <Label Text="{Binding Encuesta2.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
+            <CollectionView ItemsSource="{Binding Encuesta2.PreguntasUsuario}" SelectionMode="None" ItemsUpdatingScrollMode="KeepItemsInView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
                                             RadioButtonGroup.GroupName="{Binding GrupoButton}"
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
-                            <Label Text="{Binding Pregunta.Descripcion}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" />
+                            <Label Text="{Binding Pregunta.Descripcion}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}"/>
 
-                            <RadioButton Content="0" Value="0" />
-                            <RadioButton Content="1" Value="1" />
-                            <RadioButton Content="2" Value="2" />
-                            <RadioButton Content="3" Value="3" />
-                            <RadioButton Content="4" Value="4" />
-
-                        </StackLayout>
-
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Label Text="{Binding Encuesta3.Nombre}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
-            <CollectionView ItemsSource="{Binding Encuesta3.PreguntasUsuario}" SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
-                                            RadioButtonGroup.GroupName="{Binding GrupoButton}"
-                                            RadioButtonGroup.SelectedValue="{Binding Puntaje}">
-                            <Label Text="{Binding Pregunta.Descripcion}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" />
-
-                            <RadioButton Content="0" Value="0" />
-                            <RadioButton Content="1" Value="1" />
-                            <RadioButton Content="2" Value="2" />
-                            <RadioButton Content="3" Value="3" />
+                            <RadioButton Content="0" Value="0" FontSize="10"/>
+                            <RadioButton Content="1" Value="1" FontSize="10"/>
+                            <RadioButton Content="2" Value="2" FontSize="10"/>
+                            <RadioButton Content="3" Value="3" FontSize="10"/>
+                            <RadioButton Content="4" Value="4" FontSize="10"/>
 
                         </StackLayout>
 
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+            <Label Text="{Binding Encuesta3.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
+            <CollectionView ItemsSource="{Binding Encuesta3.PreguntasUsuario}" SelectionMode="None" ItemsUpdatingScrollMode="KeepItemsInView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
+                                            RadioButtonGroup.GroupName="{Binding GrupoButton}"
+                                            RadioButtonGroup.SelectedValue="{Binding Puntaje}">
+                            <Label Text="{Binding Pregunta.Descripcion}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}"/>
 
-        <StackLayout Orientation="Horizontal">
+                            <RadioButton Content="0" Value="0" FontSize="10"/>
+                            <RadioButton Content="1" Value="1" FontSize="10"/>
+                            <RadioButton Content="2" Value="2" FontSize="10"/>
+                            <RadioButton Content="3" Value="3" FontSize="10"/>
+
+                        </StackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
-        </StackLayout>
+            
     </StackLayout>
+    </ScrollView>
+
 </ContentPage>
