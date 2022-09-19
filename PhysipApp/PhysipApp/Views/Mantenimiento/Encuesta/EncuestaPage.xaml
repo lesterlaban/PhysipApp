@@ -3,7 +3,6 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="PhysipApp.Views.EncuestaPage"
             Title="{Binding Title}"
-            xmlns:local="clr-namespace:PhysipApp.ViewModels"  
             xmlns:model="clr-namespace:PhysipApp.Models"  
             x:Name="BrowseItemsPage">
     
@@ -13,14 +12,15 @@
     <ScrollView>
 
         <StackLayout Spacing="3" Padding="15">
-            <Label Text="{Binding Encuesta1.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
-            <CollectionView ItemsSource="{Binding Encuesta1.PreguntasUsuario}" SelectionMode="None" ItemsUpdatingScrollMode="KeepItemsInView">
+            <Label Text="{Binding Encuesta1.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" IsVisible="{Binding showEncuesta1}"/>
+            <CollectionView ItemsSource="{Binding Encuesta1.PreguntasUsuario}" SelectionMode="None"  IsVisible="{Binding showEncuesta1}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
                                             RadioButtonGroup.GroupName="{Binding GrupoButton}"
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
                             <Label Text="{Binding Pregunta.Descripcion}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}" />
+                            <Label Text="*" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="Red" IsVisible="{Binding RespuestaSeleccionada}"/>
                             <RadioButton Content="1" Value="1" FontSize="10" />
                             <RadioButton Content="2" Value="2" FontSize="10"/>
                             <RadioButton Content="3" Value="3" FontSize="10"/>
@@ -30,14 +30,18 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="{Binding Encuesta2.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
-            <CollectionView ItemsSource="{Binding Encuesta2.PreguntasUsuario}" SelectionMode="None" ItemsUpdatingScrollMode="KeepItemsInView">
+            <Button Text="Siguiente" Command="{Binding GoToEncuesta2}" HorizontalOptions="FillAndExpand" IsVisible="{Binding showEncuesta1}"></Button>
+
+
+            <Label Text="{Binding Encuesta2.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" IsVisible="{Binding showEncuesta2}"/>
+            <CollectionView ItemsSource="{Binding Encuesta2.PreguntasUsuario}" SelectionMode="None" ItemsUpdatingScrollMode="KeepItemsInView" IsVisible="{Binding showEncuesta2}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
                                             RadioButtonGroup.GroupName="{Binding GrupoButton}"
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
                             <Label Text="{Binding Pregunta.Descripcion}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}"/>
+                            <Label Text="*" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="Red" IsVisible="{Binding RespuestaSeleccionada}"/>
 
                             <RadioButton Content="0" Value="0" FontSize="10"/>
                             <RadioButton Content="1" Value="1" FontSize="10"/>
@@ -50,14 +54,21 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Label Text="{Binding Encuesta3.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" />
-            <CollectionView ItemsSource="{Binding Encuesta3.PreguntasUsuario}" SelectionMode="None" ItemsUpdatingScrollMode="KeepItemsInView">
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding showEncuesta2}">
+                <Button Text="Atras" Command="{Binding GoToEncuesta1}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Siguiente" Command="{Binding GoToEncuesta3}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+
+
+            <Label Text="{Binding Encuesta3.Nombre}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="20" IsVisible="{Binding showEncuesta3}"/>
+            <CollectionView ItemsSource="{Binding Encuesta3.PreguntasUsuario}" SelectionMode="None" ItemsUpdatingScrollMode="KeepItemsInView" IsVisible="{Binding showEncuesta3}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10" x:DataType="model:PreguntaUsuario" 
                                             RadioButtonGroup.GroupName="{Binding GrupoButton}"
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
                             <Label Text="{Binding Pregunta.Descripcion}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}"/>
+                            <Label Text="*" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="Red" IsVisible="{Binding RespuestaSeleccionada}"/>
 
                             <RadioButton Content="0" Value="0" FontSize="10"/>
                             <RadioButton Content="1" Value="1" FontSize="10"/>
@@ -70,7 +81,12 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding showEncuesta3}">
+                <Button Text="Atras" Command="{Binding GoToEncuesta2}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+
+            
             
     </StackLayout>
     </ScrollView>

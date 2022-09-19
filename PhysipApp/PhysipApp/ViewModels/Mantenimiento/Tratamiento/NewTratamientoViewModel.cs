@@ -1,9 +1,7 @@
 ﻿using PhysipApp.Models;
-
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PhysipApp.ViewModels
@@ -19,7 +17,6 @@ namespace PhysipApp.ViewModels
 			this.PropertyChanged +=
 			(_, __) => SaveCommand.ChangeCanExecute();
 		}
-
 
 		private ObservableCollection<ZonaDolor> _zonas;
 		public ObservableCollection<ZonaDolor> Zonas
@@ -40,6 +37,15 @@ namespace PhysipApp.ViewModels
 			}
 		}
 
+		private ObservableCollection<Encuesta> _encuestas;
+		public ObservableCollection<Encuesta> Encuestas
+		{
+			get => _encuestas;
+			set
+			{
+				SetProperty(ref _encuestas, value);
+			}
+		}
 
 
 		private ObservableCollection<Recurso> _recursos;
@@ -83,6 +89,16 @@ namespace PhysipApp.ViewModels
 			}
 		}
 
+		private Encuesta _encuestaSeleccionada;
+		public Encuesta EncuestaSeleccionada
+		{
+			get => _encuestaSeleccionada;
+			set
+			{
+				SetProperty(ref _encuestaSeleccionada, value);
+			}
+		}
+
 		private Recurso _recursoSeleccionado;
 		public Recurso RecursoSeleccionado
 		{
@@ -116,7 +132,8 @@ namespace PhysipApp.ViewModels
 		private bool ValidateSave()
 		{
 			return ZonaSeleccionada != null
-				&& NivelSeleccionado != null;
+				&& NivelSeleccionado != null
+				&& EncuestaSeleccionada != null;
 		}
 
 
@@ -132,7 +149,7 @@ namespace PhysipApp.ViewModels
 			IsBusy = true;
 			var selecionados = RecursosSelected.ToList().ConvertAll(x => (Recurso)x);
 			var newItem = Tratamiento.New(ZonaSeleccionada, NivelSeleccionado, 
-				PuntajeMinimo, PuntajeMaximo, selecionados);
+				EncuestaSeleccionada, PuntajeMinimo, PuntajeMaximo, selecionados);
 			var result = await _servicioApi.Add("Tratamientos", newItem);
 			IsBusy = false;
 			if (result)
@@ -151,6 +168,11 @@ namespace PhysipApp.ViewModels
 			var niveles = await _servicioApi.GetItemAsync<List<NivelDolor>>("NivelDolor");
 			if (niveles != null)
 				niveles.ForEach(i => Niveles.Add(i));
+
+			Encuestas = new ObservableCollection<Encuesta>();
+			var encuestas = await _servicioApi.GetItemAsync<List<Encuesta>>("Encuestas");
+			if (encuestas != null)
+				encuestas.ForEach(i => Encuestas.Add(i));
 
 			Recursos = new ObservableCollection<Recurso>();
 			var recursos = await _servicioApi.GetItemAsync<List<Recurso>>("Recursos");

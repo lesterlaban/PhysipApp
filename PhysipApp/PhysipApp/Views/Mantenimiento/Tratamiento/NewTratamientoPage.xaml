@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PhysipApp.Views.NewTratamientoPage"
              Title="{Binding Title}"
-             xmlns:local="clr-namespace:PhysipApp.ViewModels"  
-             xmlns:model="clr-namespace:PhysipApp.Models"  
              xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms"
              x:Name="BrowseItemsPage">
 
@@ -26,29 +24,36 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-  
 
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
 
-
             <Label Text="Zona de Dolor" FontSize="Medium" />
             <Picker Title="Seleccionar"
-                            TitleColor="{StaticResource Primary}"
-                            ItemsSource="{Binding Zonas}"
-                            SelectedItem="{Binding ZonaSeleccionada}"  
-                            ItemDisplayBinding="{Binding Descripcion}"
-                            TextColor="{StaticResource Primary}"
-                            FontSize="20"/>
+                TitleColor="{StaticResource Primary}"
+                ItemsSource="{Binding Zonas}"
+                SelectedItem="{Binding ZonaSeleccionada}"  
+                ItemDisplayBinding="{Binding Descripcion}"
+                TextColor="{StaticResource Primary}"
+                FontSize="20"/>
 
             <Label Text="Nivel de Dolor" FontSize="Medium" />
             <Picker Title="Seleccionar"
-                            TitleColor="{StaticResource Primary}"
-                            ItemsSource="{Binding Niveles}"
-                            SelectedItem="{Binding NivelSeleccionado}"  
-                            ItemDisplayBinding="{Binding Descripcion}"
-                            TextColor="{StaticResource Primary}"
-                            FontSize="20"/>
+                TitleColor="{StaticResource Primary}"
+                ItemsSource="{Binding Niveles}"
+                SelectedItem="{Binding NivelSeleccionado}"  
+                ItemDisplayBinding="{Binding Descripcion}"
+                TextColor="{StaticResource Primary}"
+                FontSize="20"/>
+
+            <Label Text="Encuesta" FontSize="Medium" />
+            <Picker Title="Seleccionar"
+                TitleColor="{StaticResource Primary}"
+                ItemsSource="{Binding Encuestas}"
+                SelectedItem="{Binding EncuestaSeleccionada}"  
+                ItemDisplayBinding="{Binding Nombre}"
+                TextColor="{StaticResource Primary}"
+                FontSize="20"/>
 
 
             <Label Text="Puntaje Mínimo" FontSize="Medium" />

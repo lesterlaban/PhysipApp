@@ -24,7 +24,7 @@ namespace PhysipApp.ViewModels
 			IsBusy = false;
 			if (usuario != null)
 			{
-				await SecureStorage.SetAsync("idUser", usuario.Id.ToString());
+				await SecureStorage.SetAsync("idUser", usuario?.Id.ToString());
 				if (usuario.IdRol == 1)
 					Application.Current.MainPage = new AppShell();
 				else

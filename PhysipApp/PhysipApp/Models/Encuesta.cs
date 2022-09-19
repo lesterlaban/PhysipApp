@@ -70,7 +70,7 @@ namespace PhysipApp.Models
 		public Pregunta Pregunta { get; set; }
 		public Usuario Usuario { get; set; }
 		public string GrupoButton { get; set; }
-		public bool RespuestaSeleccionada { get; set; }
+		public bool RespuestaSeleccionada => Puntaje <= -1;
 		public static PreguntaUsuario New(int idUsuario, string groupName, Pregunta pregunta)
 		{
 			return new PreguntaUsuario()

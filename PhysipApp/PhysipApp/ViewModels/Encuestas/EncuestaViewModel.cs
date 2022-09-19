@@ -53,14 +53,74 @@ namespace PhysipApp.ViewModels
 
 		private string _idUsuario;
 
+
+		private bool _showEncuesta1;
+		public bool showEncuesta1
+		{
+			get => _showEncuesta1;
+			set
+			{
+				SetProperty(ref _showEncuesta1, value);
+			}
+		}
+
+
+		private bool _showEncuesta2;
+		public bool showEncuesta2
+		{
+			get => _showEncuesta2;
+			set
+			{
+				SetProperty(ref _showEncuesta2, value);
+			}
+		}
+
+		private bool _showEncuesta3;
+		public bool showEncuesta3
+		{
+			get => _showEncuesta3;
+			set
+			{
+				SetProperty(ref _showEncuesta3, value);
+			}
+		}
+
 		public EncuestaViewModel()
 		{
 			Title = "Cuestionario";
 			ExecuteLoadItemsCommand();
+			showEncuesta1 = true;
+			showEncuesta2 = false;
+			showEncuesta3 = false;
 			SaveCommand = new Command(OnSave);
 			CerrarCommand= new Command(CerarSesion);
+			GoToEncuesta1 = new Command(_GoToEncuesta1);
+			GoToEncuesta2 = new Command(_GoToEncuesta2);
+			GoToEncuesta3 = new Command(_GoToEncuesta3);
 			this.PropertyChanged +=
 				(_, __) => SaveCommand.ChangeCanExecute();
+		}
+
+		public Command GoToEncuesta1 { get; }
+		private async void _GoToEncuesta1()
+		{
+			showEncuesta1 = true;
+			showEncuesta2 = false;
+			showEncuesta3 = false;
+		}
+		public Command GoToEncuesta2 { get; }
+		private async void _GoToEncuesta2()
+		{
+			showEncuesta1 = false;
+			showEncuesta2 = true;
+			showEncuesta3 = false;
+		}
+		public Command GoToEncuesta3 { get; }
+		private async void _GoToEncuesta3()
+		{
+			showEncuesta1 = false;
+			showEncuesta2 = false;
+			showEncuesta3 = true;
 		}
 
 		public Command SaveCommand { get; }
@@ -73,7 +133,8 @@ namespace PhysipApp.ViewModels
 
 			if(contentPreguntas.Exists(p=> p.Puntaje == -1))
 			{
-				await Application.Current.MainPage.DisplayAlert("Atención", "Seleccione todas las preguntas del cuestionario.", "OK");
+				var preguntasNo = string.Join(" - ", contentPreguntas.Where(p => p.Puntaje == -1).Select(p => p.Pregunta.Descripcion));
+				await Application.Current.MainPage.DisplayAlert("Atención", $"Seleccione: {preguntasNo}.", "OK");
 				return;
 			}
 
@@ -103,7 +164,7 @@ namespace PhysipApp.ViewModels
 					encuesta.PreguntasUsuario = preguntas.Select(p => 
 					{
 						group++;
-						return PreguntaUsuario.New(Convert.ToInt32(_idUsuario), group.ToString(), p);
+						return PreguntaUsuario.New(Convert.ToInt32(_idUsuario), p.Descripcion, p);
 					} ).ToList();
 					Encuestas.Add(encuesta);
 					if (Encuesta1 == null)
