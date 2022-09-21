@@ -40,7 +40,6 @@
                                             RadioButtonGroup.GroupName="{Binding GrupoButton}"
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
                             <Label Text="{Binding Pregunta.Descripcion}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}"/>
-                            <Label Text="*" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="Red" IsVisible="{Binding RespuestaSeleccionada}"/>
 
                             <RadioButton IsChecked="{Binding Zero}" Content="0" Value="0" FontSize="10"/>
                             <RadioButton IsChecked="{Binding Uno}" Content="1" Value="1" FontSize="10"/>
@@ -67,7 +66,6 @@
                                             RadioButtonGroup.GroupName="{Binding GrupoButton}"
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
                             <Label Text="{Binding Pregunta.Descripcion}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}"/>
-                            <Label Text="*" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="Red" IsVisible="{Binding RespuestaSeleccionada}"/>
 
                             <RadioButton IsChecked="{Binding Zero}" Content="0" Value="0" FontSize="10"/>
                             <RadioButton IsChecked="{Binding Uno}" Content="1" Value="1" FontSize="10"/>
