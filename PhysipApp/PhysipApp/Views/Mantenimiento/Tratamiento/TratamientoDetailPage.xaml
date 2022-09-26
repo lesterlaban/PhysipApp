@@ -2,13 +2,77 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PhysipApp.Views.TratamientoDetailPage"
+             xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms"
              Title="{Binding Title}">
-    <ScrollView>
+    <ContentPage.Resources>
+        <xcConverters:StringCharLimitConverter x:Key="StringCharLimitConverter"/>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        
         <StackLayout Spacing="20" Padding="15">
-     
+            <Label Text="{Binding TratamientoSelected.DescripcionZona}" FontSize="Small"/>
+            <Label Text="{Binding TratamientoSelected.DescripcionNivel}" FontSize="Small"/>
+            <Label Text="{Binding TratamientoSelected.DescripcionEncuesta}" FontSize="Small"/>
 
-            
-           
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="60*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Text="Puntaje Mínimo" FontSize="Small" />
+                <Editor Grid.Column="1" Grid.Row="0" Text="{Binding TratamientoSelected.PuntajeMinimo, Mode=TwoWay}" Keyboard="Numeric" FontSize="Small" />
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Puntaje Máximo" FontSize="Small" />
+                <Editor Grid.Column="1" Grid.Row="1" Text="{Binding TratamientoSelected.PuntajeMaximo, Mode=TwoWay}" Keyboard="Numeric" FontSize="Small" />
+            </Grid>
+
+
+            <Label Text="Recursos" FontSize="Medium" />
+            <CollectionView x:Name="collectionView" ItemsSource="{Binding Recursos}"
+                SelectionMode="Multiple"
+                SelectedItems="{Binding RecursosSelected}"
+                            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Text="{Binding Titulo}" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Text="{Binding Description}" FontAttributes="Italic" VerticalOptions="End" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Actualizar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+
         </StackLayout>
-    </ScrollView>
+
+    </ContentPage.Content>
+
 </ContentPage>

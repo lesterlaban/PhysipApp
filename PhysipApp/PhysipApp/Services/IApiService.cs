@@ -7,6 +7,7 @@ namespace PhysipApp.Services
 	{
 		Task<T> GetItemAsync<T>(string resource);
 		Task<bool> Add(string resource, object content);
+		Task<bool> Update(string resource, object content);
 		Task<bool> Delete(string resource);
 	}
 }

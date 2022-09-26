@@ -9,8 +9,13 @@ namespace PhysipApp.Models
 		public int IdZona { get; set; }
 		public int IdNivelDolor { get; set; }
 		public int IdEncuesta { get; set; }
+		public string DescripcionZona => $"Zona: {ZonaDolor?.Descripcion}";
+		public string DescripcionNivel => $"Nivel de Dolor: {NivelDolor?.Descripcion}";
+		public string DescripcionEncuesta => $"Encuesta: {Encuesta?.Nombre}";
+
 		public ZonaDolor ZonaDolor { get; set; }
 		public NivelDolor NivelDolor { get; set; }
+		public Encuesta Encuesta { get; set; }
 		public virtual List<TratamientoRecurso> Recursos { get; set; }
 		public int PuntajeMinimo { get; set; }
 		public int PuntajeMaximo { get; set; }

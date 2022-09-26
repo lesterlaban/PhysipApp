@@ -77,6 +77,16 @@ namespace PhysipApp.Services
             });
         }
 
+        public async Task<bool> Update(string resource, object content)
+        {
+            return await InvokeAsyncApiFunction<bool>(async (httpClient) =>
+            {
+                var json = JsonConvert.SerializeObject(content);
+                var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+                return await httpClient.PutAsync($"{_host}/{resource}", stringContent);
+            });
+        }
+
         public async Task<bool> Delete(string resource)
         {
             return await InvokeAsyncApiFunction<bool>(async (httpClient) =>

@@ -28,39 +28,55 @@
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
 
-            <Label Text="Zona de Dolor" FontSize="Medium" />
-            <Picker Title="Seleccionar"
-                TitleColor="{StaticResource Primary}"
-                ItemsSource="{Binding Zonas}"
-                SelectedItem="{Binding ZonaSeleccionada}"  
-                ItemDisplayBinding="{Binding Descripcion}"
-                TextColor="{StaticResource Primary}"
-                FontSize="20"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="60*" />
+                </Grid.ColumnDefinitions>
 
-            <Label Text="Nivel de Dolor" FontSize="Medium" />
-            <Picker Title="Seleccionar"
-                TitleColor="{StaticResource Primary}"
-                ItemsSource="{Binding Niveles}"
-                SelectedItem="{Binding NivelSeleccionado}"  
-                ItemDisplayBinding="{Binding Descripcion}"
-                TextColor="{StaticResource Primary}"
-                FontSize="20"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="Zona: " FontSize="Small" />
+                <Picker Title="Seleccionar" Grid.Column="1" Grid.Row="0"
+                    TitleColor="{StaticResource Primary}"
+                    ItemsSource="{Binding Zonas}"
+                    SelectedItem="{Binding ZonaSeleccionada}"  
+                    ItemDisplayBinding="{Binding Descripcion}"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="Small"
+                    />
 
-            <Label Text="Encuesta" FontSize="Medium" />
-            <Picker Title="Seleccionar"
-                TitleColor="{StaticResource Primary}"
-                ItemsSource="{Binding Encuestas}"
-                SelectedItem="{Binding EncuestaSeleccionada}"  
-                ItemDisplayBinding="{Binding Nombre}"
-                TextColor="{StaticResource Primary}"
-                FontSize="20"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="Nivel: " FontSize="Small" />
+                <Picker Title="Seleccionar" Grid.Column="1" Grid.Row="1"
+                    TitleColor="{StaticResource Primary}"
+                    ItemsSource="{Binding Niveles}"
+                    SelectedItem="{Binding NivelSeleccionado}"  
+                    ItemDisplayBinding="{Binding Descripcion}"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="Small"/>
 
 
-            <Label Text="Puntaje Mínimo" FontSize="Medium" />
-            <Editor Text="{Binding PuntajeMinimo, Mode=TwoWay}" AutoSize="TextChanges" Keyboard="Numeric" FontSize="Medium" Margin="0" />
+                <Label Grid.Column="0" Grid.Row="2" Text="Encuesta: " FontSize="Small" />
+                <Picker Title="Seleccionar" Grid.Column="1" Grid.Row="2"
+                    TitleColor="{StaticResource Primary}"
+                    ItemsSource="{Binding Encuestas}"
+                    SelectedItem="{Binding EncuestaSeleccionada}"  
+                    ItemDisplayBinding="{Binding Nombre}"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="Small"/>
 
-            <Label Text="Puntaje Máximo" FontSize="Medium" />
-            <Editor Text="{Binding PuntajeMaximo, Mode=TwoWay}" AutoSize="TextChanges" Keyboard="Numeric" FontSize="Medium" Margin="0" />
+                <Label Grid.Column="0" Grid.Row="3" Text="Puntaje Mínimo" FontSize="Small" />
+                <Editor Grid.Column="1" Grid.Row="3" Text="{Binding PuntajeMinimo, Mode=TwoWay}" AutoSize="TextChanges" Keyboard="Numeric" FontSize="Small" Margin="0" />
+
+                <Label Grid.Column="0" Grid.Row="4" Text="Puntaje Máximo" FontSize="Small" />
+                <Editor Grid.Column="1" Grid.Row="4" Text="{Binding PuntajeMaximo, Mode=TwoWay}" AutoSize="TextChanges" Keyboard="Numeric" FontSize="Small" Margin="0" />
+
+            </Grid>
 
 
             <Label Text="Recursos" FontSize="Medium" />

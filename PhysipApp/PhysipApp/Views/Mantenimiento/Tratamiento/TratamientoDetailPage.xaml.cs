@@ -9,7 +9,7 @@ namespace PhysipApp.Views
 		public TratamientoDetailPage()
 		{
 			InitializeComponent();
-			BindingContext = new PreguntaDetailViewModel();
+			BindingContext = new TratamientoDetailViewModel();
 		}
 	}
 }
