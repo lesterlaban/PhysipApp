@@ -8,24 +8,25 @@ namespace PhysipApp.Models
 		public int Id { get; set; }
 		public int IdZona { get; set; }
 		public int IdNivelDolor { get; set; }
-		public int IdEncuesta { get; set; }
-		public string DescripcionZona => $"Zona: {ZonaDolor?.Descripcion}";
-		public string DescripcionNivel => $"Nivel de Dolor: {NivelDolor?.Descripcion}";
-		public string DescripcionEncuesta => $"Encuesta: {Encuesta?.Nombre}";
-
+		public int IdEncuestaSeccion { get; set; }
+		public string DescripcionZona => $"{ZonaDolor?.Descripcion}";
+		public string DescripcionNivel => $"Nivel {NivelDolor?.Descripcion}";
+		public string DescripcionEncuesta => $"{EncuestaSeccion?.Encuesta?.Nombre} {EncuestaSeccion?.Nombre}";
+		public string DescripcionPuntaje => $"Rango Puntaje {PuntajeMinimo} - {PuntajeMaximo}";
 		public ZonaDolor ZonaDolor { get; set; }
 		public NivelDolor NivelDolor { get; set; }
-		public Encuesta Encuesta { get; set; }
+		public EncuestaSeccion EncuestaSeccion { get; set; }
 		public virtual List<TratamientoRecurso> Recursos { get; set; }
 		public int PuntajeMinimo { get; set; }
 		public int PuntajeMaximo { get; set; }
+
 		public static Tratamiento New(ZonaDolor zona, 
-			NivelDolor nivel, Encuesta encuesta,
+			NivelDolor nivel, EncuestaSeccion EecuestaSeccion,
 			int minimo, int maximo, List<Recurso> recursos) => new Tratamiento()
 		{
 			IdZona = zona.Id,
 			IdNivelDolor = nivel.Id,
-			IdEncuesta = encuesta.Id,
+			IdEncuestaSeccion = EecuestaSeccion.Id,
 			PuntajeMinimo = minimo,
 			PuntajeMaximo = maximo,
 			Recursos = recursos.Select(r => new TratamientoRecurso() { IdRecurso = r.Id}).ToList(),

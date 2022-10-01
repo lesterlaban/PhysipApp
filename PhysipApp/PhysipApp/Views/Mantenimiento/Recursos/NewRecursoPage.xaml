@@ -3,32 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PhysipApp.Views.NewRecursoPage"
              Title="{Binding Title}"
-             xmlns:local="clr-namespace:PhysipApp.ViewModels"  
-             xmlns:model="clr-namespace:PhysipApp.Models"  
-             xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Name="BrowseItemsPage">
 
     <ContentPage.Resources>
-        <xcConverters:StringCharLimitConverter x:Key="StringCharLimitConverter"/>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>
 
 
     <ContentPage.Content >
         <StackLayout Spacing="3" Padding="15" >
-          
-            <Label Text="Titulo" FontSize="Medium" />
+
+            <Label Text="Titulo" FontSize="Medium" TextColor="#2196F3"/>
             <Editor Text="{Binding Titulo, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-         
-            <Label Text="Descripcion" FontSize="Medium" />
+
+            <Label Text="Descripcion" FontSize="Medium" TextColor="#2196F3" />
             <Editor Text="{Binding Descripcion, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
 
-            <Label Text="Url" FontSize="Medium" />
+            <Label Text="Url" FontSize="Medium" TextColor="#2196F3"/>
             <Editor Text="{Binding Url, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
 
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Registrar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
+                <Button Text="Registrar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
             </StackLayout>
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
         </StackLayout>
     </ContentPage.Content>
 

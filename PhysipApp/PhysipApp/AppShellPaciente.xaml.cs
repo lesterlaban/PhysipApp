@@ -13,6 +13,8 @@ namespace PhysipApp
 			InitializeComponent();
 			Routing.RegisterRoute(nameof(NewConsultaPage), typeof(NewConsultaPage));
 			Routing.RegisterRoute(nameof(ConsultaDetailPage), typeof(ConsultaDetailPage));
+			Routing.RegisterRoute(nameof(ConsultaRecursoPage), typeof(ConsultaRecursoPage));
+			
 		}
 
 	}

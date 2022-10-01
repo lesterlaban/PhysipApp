@@ -34,7 +34,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Text="{Binding Seccion.Encuesta.NombreDisplay}" 
-                                Style="{DynamicResource ListItemTextStyle}" 
+                                Style="{DynamicResource ListItemTextStyle}" TextColor="{StaticResource Primary}"
                                 FontSize="20" Grid.Row="0" Grid.Column="0"/>
 
                             <Label Text="{Binding Seccion.NombreDisplay}" 

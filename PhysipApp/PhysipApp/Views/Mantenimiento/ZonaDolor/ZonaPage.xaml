@@ -29,7 +29,7 @@
                             </Grid.ColumnDefinitions>
                         
                         <Label Text="{Binding Descripcion}" 
-                            LineBreakMode="NoWrap" Grid.Column="0"
+                            LineBreakMode="NoWrap" Grid.Column="0" TextColor="{StaticResource Primary}"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="20" />
                         <ImageButton Source="delete.png" Grid.Column="1"

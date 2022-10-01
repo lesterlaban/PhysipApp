@@ -2,19 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PhysipApp.Views.ConsultaDetailPage"
-    xmlns:model="clr-namespace:PhysipApp.Models"  
+    xmlns:model="clr-namespace:PhysipApp.Models"
+    xmlns:local="clr-namespace:PhysipApp.ViewModels"  
     Title="{Binding Title}">
 
     <ContentPage.Content>
-        <CollectionView x:Name="ItemsListView" ItemsSource="{Binding Items}" SelectionMode="None">
+        <CollectionView x:Name="ItemsListView" ItemsSource="{Binding Items}" SelectionMode="None"  >
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <StackLayout Spacing="20" x:DataType="model:Recurso">
+                <StackLayout Padding="10" x:DataType="model:Recurso">
                     <Label Text="{Binding Titulo}" FontSize="20" Style="{DynamicResource ListItemTextStyle}" TextColor="{StaticResource Primary}"/>
-                    <Label Text="{Binding Descripcion}" FontSize="Small"/>
-                    <WebView HeightRequest="800"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Source="{Binding Url}"/>
+                    <Label Text="{Binding Descripcion}" FontSize="17"/>
+                    <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" CommandParameter="{Binding .}" Command="{Binding Source={RelativeSource AncestorType={x:Type local:ConsultaDetailViewModel}}, Path=ItemTapped}" >
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
-
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

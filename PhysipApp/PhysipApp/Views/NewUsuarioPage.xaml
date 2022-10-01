@@ -2,10 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              mc:Ignorable="d"
              x:Class="PhysipApp.Views.NewUsuarioPage"
              Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
 
@@ -25,13 +32,13 @@
                            IsPassword="True"  
                            TextColor="#2196F3"/>
 
-            <Button VerticalOptions="Center" Text="Registrarme" Command="{Binding RegistrarUsuario}"/>
+            <Button VerticalOptions="Center" Text="Registrarme" Command="{Binding RegistrarUsuario}" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" />
 
             <Button BorderColor="Transparent"
                 BackgroundColor="Transparent"
                     TextColor="#2196F3"
-                 VerticalOptions="Center" Text="Volver" Command="{Binding Volver}"/>
-            
+                 VerticalOptions="Center" Text="Volver" Command="{Binding Volver}" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" />
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
 
         </StackLayout>
     </ContentPage.Content>

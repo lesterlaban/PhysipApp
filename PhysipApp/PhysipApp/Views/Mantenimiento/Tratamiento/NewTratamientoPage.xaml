@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PhysipApp.Views.NewTratamientoPage"
              Title="{Binding Title}"
-             xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Name="BrowseItemsPage">
 
     <ContentPage.Resources>
-        <xcConverters:StringCharLimitConverter x:Key="StringCharLimitConverter"/>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
         <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
@@ -66,25 +68,22 @@
                     TitleColor="{StaticResource Primary}"
                     ItemsSource="{Binding Encuestas}"
                     SelectedItem="{Binding EncuestaSeleccionada}"  
-                    ItemDisplayBinding="{Binding Nombre}"
+                    ItemDisplayBinding="{Binding NombreEncuestaDisplay}"
                     TextColor="{StaticResource Primary}"
                     FontSize="Small"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Text="Puntaje Mínimo" FontSize="Small" />
+                <Label Grid.Column="0" Grid.Row="3" Text="Puntaje Mínimo" FontSize="Small" TextColor="{StaticResource Primary}"/>
                 <Editor Grid.Column="1" Grid.Row="3" Text="{Binding PuntajeMinimo, Mode=TwoWay}" AutoSize="TextChanges" Keyboard="Numeric" FontSize="Small" Margin="0" />
 
-                <Label Grid.Column="0" Grid.Row="4" Text="Puntaje Máximo" FontSize="Small" />
+                <Label Grid.Column="0" Grid.Row="4" Text="Puntaje Máximo" FontSize="Small" TextColor="{StaticResource Primary}"/>
                 <Editor Grid.Column="1" Grid.Row="4" Text="{Binding PuntajeMaximo, Mode=TwoWay}" AutoSize="TextChanges" Keyboard="Numeric" FontSize="Small" Margin="0" />
 
             </Grid>
 
 
-            <Label Text="Recursos" FontSize="Medium" />
+            <Label Text="Recursos" FontSize="Medium" TextColor="{StaticResource Primary}"/>
 
-            <CollectionView x:Name="collectionView" ItemsSource="{Binding Recursos}"
-                SelectionMode="Multiple"
-                SelectedItems="{Binding RecursosSelected}"
-                            >
+            <CollectionView x:Name="collectionView" ItemsSource="{Binding Recursos}" SelectionMode="Multiple" SelectedItems="{Binding RecursosSelected}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="5">
@@ -97,14 +96,14 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
             </CollectionView>
 
 
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Registrar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
+                <Button Text="Registrar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
             </StackLayout>
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
         </StackLayout>
     </ContentPage.Content>
 

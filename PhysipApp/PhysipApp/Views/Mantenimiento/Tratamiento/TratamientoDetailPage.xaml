@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="PhysipApp.Views.TratamientoDetailPage"
-             xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms"
              Title="{Binding Title}">
     <ContentPage.Resources>
-        <xcConverters:StringCharLimitConverter x:Key="StringCharLimitConverter"/>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
         <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
@@ -25,9 +27,9 @@
     <ContentPage.Content>
         
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="{Binding TratamientoSelected.DescripcionZona}" FontSize="Small"/>
-            <Label Text="{Binding TratamientoSelected.DescripcionNivel}" FontSize="Small"/>
-            <Label Text="{Binding TratamientoSelected.DescripcionEncuesta}" FontSize="Small"/>
+            <Label Text="{Binding TratamientoSelected.DescripcionZona}" FontSize="Small" TextColor="{StaticResource Primary}"/>
+            <Label Text="{Binding TratamientoSelected.DescripcionNivel}" FontSize="Small" TextColor="{StaticResource Primary}"/>
+            <Label Text="{Binding TratamientoSelected.DescripcionEncuesta}" FontSize="Small" TextColor="{StaticResource Primary}"/>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -38,15 +40,15 @@
                     <ColumnDefinition Width="40*" />
                     <ColumnDefinition Width="60*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Text="Puntaje Mínimo" FontSize="Small" />
+                <Label Grid.Column="0" Grid.Row="0" Text="Puntaje Mínimo" FontSize="Small" TextColor="{StaticResource Primary}"/>
                 <Editor Grid.Column="1" Grid.Row="0" Text="{Binding TratamientoSelected.PuntajeMinimo, Mode=TwoWay}" Keyboard="Numeric" FontSize="Small" />
 
-                <Label Grid.Column="0" Grid.Row="1" Text="Puntaje Máximo" FontSize="Small" />
+                <Label Grid.Column="0" Grid.Row="1" Text="Puntaje Máximo" FontSize="Small" TextColor="{StaticResource Primary}"/>
                 <Editor Grid.Column="1" Grid.Row="1" Text="{Binding TratamientoSelected.PuntajeMaximo, Mode=TwoWay}" Keyboard="Numeric" FontSize="Small" />
             </Grid>
 
 
-            <Label Text="Recursos" FontSize="Medium" />
+            <Label Text="Recursos" FontSize="Medium" TextColor="{StaticResource Primary}"/>
             <CollectionView x:Name="collectionView" ItemsSource="{Binding Recursos}"
                 SelectionMode="Multiple"
                 SelectedItems="{Binding RecursosSelected}"
@@ -67,10 +69,10 @@
             </CollectionView>
 
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Actualizar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
+                <Button Text="Actualizar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
             </StackLayout>
-
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
         </StackLayout>
 
     </ContentPage.Content>

@@ -3,8 +3,14 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="PhysipApp.Views.EncuestaPage"
             Title="{Binding Title}"
-            xmlns:model="clr-namespace:PhysipApp.Models"  
-            x:Name="BrowseItemsPage">
+            xmlns:model="clr-namespace:PhysipApp.Models" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Name="BrowseItemsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Cerrar Sesión" Command="{Binding CerrarCommand}" />
@@ -20,10 +26,10 @@
                                             RadioButtonGroup.GroupName="{Binding GrupoButton}"
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
                             <Label Text="{Binding Pregunta.Descripcion}" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}" />
-                            <RadioButton IsChecked="{Binding Uno}" Content="1" Value="1" FontSize="10" />
-                            <RadioButton IsChecked="{Binding Dos}" Content="2" Value="2" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Tres}" Content="3" Value="3" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Cuatro}" Content="4" Value="4" FontSize="10"/>
+                            <RadioButton IsChecked="{Binding Uno}" Content="1. Totalmente en Desacuerdo" Value="1" FontSize="12" />
+                            <RadioButton IsChecked="{Binding Dos}" Content="2. Parcialmente en desacuerdo" Value="2" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Tres}" Content="3. Parcialmente de Acuerdo" Value="3" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Cuatro}" Content="4. Totalmente de Acuerdo" Value="4" FontSize="12"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -41,11 +47,11 @@
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
                             <Label Text="{Binding Pregunta.Descripcion}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}"/>
 
-                            <RadioButton IsChecked="{Binding Zero}" Content="0" Value="0" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Uno}" Content="1" Value="1" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Dos}" Content="2" Value="2" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Tres}" Content="3" Value="3" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Cuatro}" Content="4" Value="4" FontSize="10"/>
+                            <RadioButton IsChecked="{Binding Zero}" Content="0. Nunca" Value="0" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Uno}" Content="1. Rara vez" Value="1" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Dos}" Content="2. Algunas veces" Value="2" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Tres}" Content="3. Muchas veces" Value="3" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Cuatro}" Content="4. Siempre " Value="4" FontSize="12"/>
 
                         </StackLayout>
 
@@ -67,10 +73,10 @@
                                             RadioButtonGroup.SelectedValue="{Binding Puntaje}">
                             <Label Text="{Binding Pregunta.Descripcion}"  Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" TextColor="{StaticResource Primary}"/>
 
-                            <RadioButton IsChecked="{Binding Zero}" Content="0" Value="0" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Uno}" Content="1" Value="1" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Dos}" Content="2" Value="2" FontSize="10"/>
-                            <RadioButton IsChecked="{Binding Tres}" Content="3" Value="3" FontSize="10"/>
+                            <RadioButton IsChecked="{Binding Zero}" Content="0. No se aplica a mí en absoluto" Value="0" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Uno}" Content="1. Se aplica a mi hasta cierto punto o parte del tiempo" Value="1" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Dos}" Content="2. Se aplica a mí en un grado considerable o buena parte del tiempo" Value="2" FontSize="12"/>
+                            <RadioButton IsChecked="{Binding Tres}" Content="3. Se aplica mucho a mi o la mayoría del tiempo" Value="3" FontSize="12"/>
 
                         </StackLayout>
 
@@ -79,13 +85,12 @@
             </CollectionView>
 
             <StackLayout Orientation="Horizontal" IsVisible="{Binding showEncuesta3}">
-                <Button Text="Atras" Command="{Binding GoToEncuesta2}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Atras" Command="{Binding GoToEncuesta2}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
             </StackLayout>
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
 
-            
-            
-    </StackLayout>
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>

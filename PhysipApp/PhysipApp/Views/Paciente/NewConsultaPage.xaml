@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PhysipApp.Views.NewConsultaPage"
              Title="{Binding Title}"
-             xmlns:local="clr-namespace:PhysipApp.ViewModels"  
-             xmlns:model="clr-namespace:PhysipApp.Models"  
-             xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms"
+             xmlns:xcConverters="clr-namespace:XCalendar.Forms.Converters;assembly=XCalendar.Forms" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Name="BrowseItemsPage">
 
     <ContentPage.Resources>
@@ -25,6 +24,9 @@
                 </VisualStateGroupList>
             </Setter>
         </Style>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>
   
 
@@ -51,9 +53,10 @@
                 
 
             <StackLayout Orientation="Horizontal">
-                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Registrar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"></Button>
+                <Button Text="Registrar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" ></Button>
             </StackLayout>
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
         </StackLayout>
     </ContentPage.Content>
 

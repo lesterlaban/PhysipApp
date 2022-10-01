@@ -37,8 +37,8 @@ namespace PhysipApp.ViewModels
 			}
 		}
 
-		private ObservableCollection<Encuesta> _encuestas;
-		public ObservableCollection<Encuesta> Encuestas
+		private ObservableCollection<EncuestaSeccion> _encuestas;
+		public ObservableCollection<EncuestaSeccion> Encuestas
 		{
 			get => _encuestas;
 			set
@@ -89,8 +89,8 @@ namespace PhysipApp.ViewModels
 			}
 		}
 
-		private Encuesta _encuestaSeleccionada;
-		public Encuesta EncuestaSeleccionada
+		private EncuestaSeccion _encuestaSeleccionada;
+		public EncuestaSeccion EncuestaSeleccionada
 		{
 			get => _encuestaSeleccionada;
 			set
@@ -146,10 +146,10 @@ namespace PhysipApp.ViewModels
 		public Command SaveCommand { get; }
 		private async void OnSave()
 		{
-			IsBusy = true;
 			var selecionados = RecursosSelected.ToList().ConvertAll(x => (Recurso)x);
 			var newItem = Tratamiento.New(ZonaSeleccionada, NivelSeleccionado, 
 				EncuestaSeleccionada, PuntajeMinimo, PuntajeMaximo, selecionados);
+			IsBusy = true;
 			var result = await _servicioApi.Add("Tratamientos", newItem);
 			IsBusy = false;
 			if (result)
@@ -169,17 +169,19 @@ namespace PhysipApp.ViewModels
 			if (niveles != null)
 				niveles.ForEach(i => Niveles.Add(i));
 
-			Encuestas = new ObservableCollection<Encuesta>();
+			Encuestas = new ObservableCollection<EncuestaSeccion>();
 			var encuestas = await _servicioApi.GetItemAsync<List<Encuesta>>("Encuestas");
+			var encuestasSeccion = encuestas.SelectMany(e=> e.Secciones).ToList();
+
 			if (encuestas != null)
-				encuestas.ForEach(i => Encuestas.Add(i));
+				encuestasSeccion.ForEach(i => Encuestas.Add(i));
 
 			Recursos = new ObservableCollection<Recurso>();
 			var recursos = await _servicioApi.GetItemAsync<List<Recurso>>("Recursos");
 			if (recursos != null)
 				recursos.ForEach(i => Recursos.Add(i));
 
-			RecursosSelected = new ObservableCollection<object>() { Recursos.FirstOrDefault()};
+			RecursosSelected = new ObservableCollection<object>();
 
 			IsBusy = false;
 		}

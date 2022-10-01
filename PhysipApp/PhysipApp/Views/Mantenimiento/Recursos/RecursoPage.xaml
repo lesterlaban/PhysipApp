@@ -31,17 +31,13 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Titulo}" 
+                            <Label Text="{Binding Titulo}" TextColor="{StaticResource Primary}"
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="20" Grid.Row="0" Grid.Column="0"/>
 
                             <Label Text="{Binding Descripcion}" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="20" Grid.Row="1" Grid.Column="0"/>
-
-                            <Label Text="{Binding Url}" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="20" Grid.Row="2" Grid.Column="0"/>
+                                FontSize="20" Grid.Row="1" Grid.Column="0"/>                      
 
                             <ImageButton Source="see.png" Grid.Column="1" 
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:RecursoViewModel}}, Path=ItemTapped}"		

@@ -16,7 +16,7 @@ namespace PhysipApp.Models
 		public NivelDolor NivelDolor { get; set; }		
 
 		public string DescripcionZona => $"Zona: {ZonaDolor?.Descripcion}";
-		public string DescripcionNivel => $"Nivel de Dolor: {NivelDolor?.Descripcion}";
+		public string DescripcionNivel => $"Nivel : {NivelDolor?.Descripcion}";
 		public string DescripcionFecha => $"Fecha: {Fecha.ToString("dd-MM-yyyy HH:mm:ss")}";
 		public static RegistroConsulta New(int idUsuario, ZonaDolor zonaDolor, NivelDolor nivelDolor) => new RegistroConsulta()
 		{

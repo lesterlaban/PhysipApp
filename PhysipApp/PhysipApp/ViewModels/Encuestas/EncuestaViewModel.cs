@@ -137,13 +137,14 @@ namespace PhysipApp.ViewModels
 				await Application.Current.MainPage.DisplayAlert("Atención", $"Seleccione: {preguntasNo}.", "OK");
 				return;
 			}
-
+			IsBusy = true;
 			var result = await _servicioApi.Add("Preguntas/Usuarios", contentPreguntas);
 			if (result)
 			{
 				await Application.Current.MainPage.DisplayAlert("Atención", "Se ha guardado correctamente sus respuestas.", "OK");
 				Application.Current.MainPage = new AppShellPaciente();
 			}
+			IsBusy = false;
 		}
 
 		async Task ExecuteLoadItemsCommand()

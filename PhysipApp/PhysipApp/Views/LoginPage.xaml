@@ -2,13 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              mc:Ignorable="d"
              x:Class="PhysipApp.Views.LoginPage"
              Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-
+         
             <Image Source="terapia.jpg" VerticalOptions="Center" HeightRequest="300" />
 
             <Entry x:Name="Usuario" Text="{Binding Usuario}" Placeholder="Usuario"   
@@ -19,12 +24,11 @@
                            PlaceholderColor="#2196F3" HeightRequest="40"   
                            IsPassword="True"  
                            TextColor="#2196F3"/>
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}" />
+            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}" />
+            <Button BorderColor="Transparent" BackgroundColor="Transparent" TextColor="#2196F3"
+                 VerticalOptions="Center" Text="Registrarme" Command="{Binding NuevoUsuario}" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
 
-            <Button BorderColor="Transparent"
-                BackgroundColor="Transparent"
-                    TextColor="#2196F3"
-                 VerticalOptions="Center" Text="Registrarme" Command="{Binding NuevoUsuario}" IsEnabled="{Binding IsNotBusy}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

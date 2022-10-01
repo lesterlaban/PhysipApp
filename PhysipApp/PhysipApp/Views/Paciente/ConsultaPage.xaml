@@ -27,17 +27,6 @@
     
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
-            <Grid Padding="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*" />
-                    <ColumnDefinition Width="50*" />
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" VerticalOptions="Center" Text="Nueva Consulta" Command="{Binding AddItemCommand}" />
-                <Button Grid.Column="1" VerticalOptions="Center" Text="Buscar" Command="{Binding Buscar}" />
-            </Grid>
 
             <xc:CalendarView
                 x:Name="MainCalendarView"
@@ -128,8 +117,22 @@
                 </xc:CalendarView.DayTemplate>
             </xc:CalendarView>
 
-            <Label Text="RESULTADOS : " 
+
+            <Grid Padding="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" VerticalOptions="Center" Text="Nueva Consulta" Command="{Binding AddItemCommand}" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+                <Button Grid.Column="1" VerticalOptions="Center" Text="Buscar" Command="{Binding Buscar}" IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"/>
+            </Grid>
+            <ActivityIndicator Color="{StaticResource Primary}" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+            <Label Text="TRATAMIENTOS " 
                 LineBreakMode="NoWrap" 
+                IsVisible="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
                 TextColor="{StaticResource Primary}"
                 Style="{DynamicResource ListItemTextStyle}" 
                 FontSize="20" />
@@ -137,7 +140,7 @@
                 ItemsSource="{Binding Items}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10" x:DataType="model:RegistroConsulta">
+                        <StackLayout Padding="5" x:DataType="model:RegistroConsulta">
                             <Label Text="{Binding DescripcionZona}" LineBreakMode="NoWrap" FontSize="18" Style="{DynamicResource ListItemTextStyle}" TextColor="{StaticResource Primary}" />
                             <Label Text="{Binding DescripcionNivel}" LineBreakMode="NoWrap" FontSize="18" Style="{DynamicResource ListItemDetailTextStyle}" TextColor="{StaticResource Primary}"/>
                             <Label Text="{Binding DescripcionFecha}" LineBreakMode="NoWrap" FontSize="17" Style="{DynamicResource ListItemDetailTextStyle}"/>

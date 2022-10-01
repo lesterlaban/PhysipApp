@@ -19,8 +19,10 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Tratamiento">
-                        <Grid Padding="1">
+                        <Grid Padding="0">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -30,13 +32,21 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding ZonaDolor.Descripcion}" 
-                                Style="{DynamicResource ListItemTextStyle}" 
+                            <Label Text="{Binding DescripcionZona}" 
+                                Style="{DynamicResource ListItemTextStyle}" TextColor="{StaticResource Primary}"
                                 FontSize="20" Grid.Row="0" Grid.Column="0"/>
 
-                            <Label Text="{Binding NivelDolor.Descripcion}" 
+                            <Label Text="{Binding DescripcionNivel}" 
                                 Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="20" Grid.Row="1" Grid.Column="0"/>
+                                FontSize="15" Grid.Row="1" Grid.Column="0"/>
+
+                            <Label Text="{Binding DescripcionEncuesta}" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="15" Grid.Row="2" Grid.Column="0"/>
+
+                            <Label Text="{Binding DescripcionPuntaje}" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="15" Grid.Row="3" Grid.Column="0"/>
 
                             <ImageButton Source="see.png" Grid.Column="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:TratamientoViewModel}}, Path=ItemTapped}"		

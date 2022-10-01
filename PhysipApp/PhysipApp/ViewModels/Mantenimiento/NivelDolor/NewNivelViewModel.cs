@@ -42,8 +42,10 @@ namespace PhysipApp.ViewModels
 		private async void OnSave()
 		{
 			var newItem = NivelDolor.New(DescripcionNivel);
+			IsBusy = true;
 			var result = await _servicioApi.Add("NivelDolor", newItem);
-			if(result)
+			IsBusy = false;
+			if (result)
 				await Shell.Current.GoToAsync("..");
 		}
 

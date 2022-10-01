@@ -25,6 +25,7 @@ namespace PhysipApp.Models
 		public List<Pregunta> Preguntas { get; set; }
 		public List<SeccionUsuario> SeccionUsuario { get; set; }
 		public string NombreDisplay => $"Sección: {Nombre}";
+		public string NombreEncuestaDisplay => $"{Encuesta.Nombre} - {Nombre}";
 		public RangoSeccion RangoValido { get; set; }
 	}
 

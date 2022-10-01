@@ -25,7 +25,7 @@
 
     <TabBar>
         <ShellContent Title="Calendario" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ConsultaPage}" />
-        <ShellContent Title="Resultado" Icon="see.png" ContentTemplate="{DataTemplate local:ResultadoEncuestaPage}" />
+        <ShellContent Title="Encuesta" Icon="see.png" ContentTemplate="{DataTemplate local:ResultadoEncuestaPage}" />
         <!-- <ShellContent Title="Historial" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ListConsultaPage}" />-->
         <Shell.BackButtonBehavior>
             <BackButtonBehavior Command="{Binding BackCommand}"

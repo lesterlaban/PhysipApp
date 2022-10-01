@@ -11,6 +11,7 @@ namespace PhysipApp.ViewModels
 	{
 		public TratamientoDetailViewModel()
 		{
+			Title = "Actualización de Tratamiento";
 			SaveCommand = new Command(OnSave);
 			CancelCommand = new Command(OnCancel);
 			this.PropertyChanged +=
@@ -90,9 +91,9 @@ namespace PhysipApp.ViewModels
 		public Command SaveCommand { get; }
 		private async void OnSave()
 		{
-			IsBusy = true;
 			var selecionados = RecursosSelected.ToList().ConvertAll(x => (Recurso)x);
 			TratamientoSelected.Recursos = selecionados.Select(r => new TratamientoRecurso() { IdRecurso = r.Id }).ToList();
+			IsBusy = true;
 			var result = await _servicioApi.Update("Tratamientos", TratamientoSelected);
 			IsBusy = false;
 			if (result)

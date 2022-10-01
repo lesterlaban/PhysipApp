@@ -61,7 +61,7 @@ namespace PhysipApp.ViewModels
 				Items.Clear();
 				var idUsuario = await SecureStorage.GetAsync("idUser");
 				string url = $"Consultas/filters?idUsuario={idUsuario}";
-				EventCalendar.SelectedDates.ToList().ForEach(s=> url += $"&fechas={s}");
+				EventCalendar.SelectedDates.ToList().ForEach(s=> url += $"&fechas={s.ToString("yyyy-MM-dd")}");
 				var items = await _servicioApi.GetItemAsync<List<RegistroConsulta>>(url);
 				if (items != null)
 					items.ForEach(i => Items.Add(i));

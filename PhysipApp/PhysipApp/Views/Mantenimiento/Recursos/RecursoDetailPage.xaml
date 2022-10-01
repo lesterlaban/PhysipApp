@@ -4,10 +4,10 @@
              x:Class="PhysipApp.Views.RecursoDetailPage"
              Title="{Binding Title}">
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Titulo:" FontSize="Medium" />
-            <Label Text="{Binding Titulo}" FontSize="Small"/>
+            <Label Text="Titulo" FontSize="Medium" TextColor="{StaticResource Primary}"/>
+            <Label Text="{Binding Titulo}" FontSize="Small" TextColor="{StaticResource Primary}"/>
             
-            <Label Text="Descripcion:" FontSize="Medium" />
+            <Label Text="Descripcion" FontSize="Medium" />
             <Label Text="{Binding Description}" FontSize="Small"/>
 
             <WebView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Source="{Binding Url}"/>

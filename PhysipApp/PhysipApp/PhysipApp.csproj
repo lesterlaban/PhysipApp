@@ -32,6 +32,9 @@
     <Compile Update="AppShellPaciente.xaml.cs">
       <DependentUpon>AppShellPaciente.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Paciente\ConsultaRecursoPage.xaml.cs">
+      <DependentUpon>ConsultaRecursoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Paciente\ResultadoEncuestaPage.xaml.cs">
       <DependentUpon>ResultadoEncuestaPage.xaml</DependentUpon>
     </Compile>
